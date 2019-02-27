@@ -51,7 +51,8 @@ Data* BlockSplit()
 	{
 		result = (Data*) malloc(sizeof(Data));
 		BlocksCount = 1;
-		memcpy((void*)result[0].string, FolderData, FolderLength-1);
+		memcpy((void*)result[0].string, FolderData, FolderLength);
+		result[0].string[7] = '\0';
 	}
 	
 	return result;	
@@ -73,14 +74,32 @@ void WriteBlockFile(char fileName[255], unsigned int lastSize)
 void DataInit()
 {
 	key =  Alloc(4);
-	key[0] = 1;
-	key[1] = 2;
-	key[2] = 3;
-	key[3] = 4;
-	
-	//int length;
-	//char* keyStr = ReadFile("key.txt", &length);
-	//strtok(keyStr, "\n");
+	int length;
+	int isKeyFileExist = 0;
+	char* keyStr = ReadFileSafe("key.txt", &isKeyFileExist, &length);
+	//WriteFile("new_file_name_file_name.txt", "info", 4);
+	if (isKeyFileExist == 1)
+	{
+		if (keyStr)
+		{
+			int index; 
+			char* temp = strtok(keyStr, "\n");
+			key[0] = atoi(temp);
+			for (int i = 1 ; ; i++) 
+			{
+				temp = strtok(NULL, "\n");
+				if (temp == NULL) break;
+				key[i] = atoi(temp);
+			}
+		}
+	}
+	else
+	{
+		key[0] = 1;
+		key[1] = 2;
+		key[2] = 3;
+		key[3] = 4;
+	}
 }
 
 void DestroyData()
