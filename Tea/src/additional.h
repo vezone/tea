@@ -71,6 +71,7 @@ void WriteBlockFile(char fileName[255], unsigned int lastSize)
 	WriteAppendFile(fileName, data[nblocksl].string, lastSize-1);
 }
 
+//Инициализация информации
 void DataInit()
 {
 	key =  Alloc(4);
@@ -102,6 +103,7 @@ void DataInit()
 	}
 }
 
+//Высвобождение памяти
 void DestroyData()
 {
 	if (key)
@@ -111,7 +113,7 @@ void DestroyData()
 }
 
 //GUI REIMPLIMENT
-
+//Упрощение для обработчика нажатия на Encrypt
 void Encrypt()
 {
 	for (int i = 0; i < BlocksCount; i++)
@@ -121,6 +123,7 @@ void Encrypt()
 	}
 }
 
+//Упрощение для обработчика нажатия на Decrypt
 void Decrypt()
 {
 	for (int i = 0; i < BlocksCount; i++)
@@ -130,12 +133,14 @@ void Decrypt()
 	}
 }
 
+//Упрощение для обработчика нажатия на SaveFile
 void SaveFile()
 {
 	char* savePath = GetCharTo(FolderPath, '.');
 	WriteBlockFile(savePath, LastSize);
 }
 
+//Упрощение для обработчика нажатия на FolderChanged
 void FolderChanged(char* path)
 {
 	FolderPath = path;
@@ -146,6 +151,7 @@ void FolderChanged(char* path)
 	data = BlockSplit(FolderData);
 }
 
+//тестовая функция
 void entry()
 {
 	FolderPath = "/home/bies/Dev/Programming/C/InformationSecurity/Laba1/file.txt";

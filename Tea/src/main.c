@@ -10,6 +10,7 @@
 
 GtkWidget *evd_window;
 
+//Обработчик события уничтожения окна
 void WindowDestroyEvent(
         GtkWidget* window,
         gpointer pointer)
@@ -18,6 +19,7 @@ void WindowDestroyEvent(
     gtk_main_quit();
 }
 
+//Обработчик события удаления окна
 gboolean WindowDeleteEvent(
     GtkWidget* widget,
     GdkEvent* event,
@@ -27,6 +29,7 @@ gboolean WindowDeleteEvent(
     return(FALSE);
 }	
 	
+//Обработчик события нажатия на EncryptButton
 void Encrypt_Clicked(
         GtkWidget* button,
         gpointer pointer)
@@ -34,6 +37,7 @@ void Encrypt_Clicked(
 	Encrypt();
 }
 
+//Обработчик события нажатия на DecryptButton
 void Decrypt_Clicked(
         GtkWidget* button,
         gpointer pointer)
@@ -41,6 +45,7 @@ void Decrypt_Clicked(
 	Decrypt();
 }
 
+//Обработчик события нажатия на SaveButton
 void Save_Clicked(
 	GtkWidget* button,
     gpointer pointer)
@@ -50,11 +55,13 @@ void Save_Clicked(
 	g_print("File saved!\n");
 }
 
+//Упрощение написания функции добавления Widget* в VBox
 void AddVBox(GtkWidget *vBox, GtkWidget *widget, int val1, int val2, int val3)
 {
     gtk_box_pack_start(GTK_BOX(vBox), widget, val1, val2, val3);
 }
 
+//Обработчик события изменения файла
 void Folder_Changed(GtkFileChooser* fChooser1)
 {
 	char* evd_FolderName = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(fChooser1));
@@ -62,9 +69,9 @@ void Folder_Changed(GtkFileChooser* fChooser1)
 	FolderChanged(evd_FolderName);
 }
 
+//Создание диалога (всплывающее окно с сообщением)
 void CreateDialog(const char* message, const char* title)
 {
-	//dialog stuff
 	GtkWidget *evd_dialog = gtk_message_dialog_new(evd_window, GTK_DIALOG_MODAL,
 		GTK_MESSAGE_INFO, GTK_BUTTONS_OK, message);
 	gtk_window_set_title(GTK_WINDOW(evd_dialog), title);	
@@ -72,6 +79,7 @@ void CreateDialog(const char* message, const char* title)
 	gtk_widget_destroy(evd_dialog);
 }
 
+//entry point
 int main(int argc,
          char** argv)
 {

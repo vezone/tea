@@ -1,5 +1,6 @@
 #pragma once
 
+//Взятие подстроки ОТ определенного индекса до конца
 char* GetCharFrom(char* string, int from)
 {
 	if (string != NULL)
@@ -20,6 +21,7 @@ char* GetCharFrom(char* string, int from)
 	}
 }
 
+//Взяятие подстроки до определенного сивола
 char* GetCharTo(char* string, char character)
 {
 	int i, index = 0;
@@ -46,7 +48,7 @@ char* GetCharTo(char* string, char character)
 	return newString;
 }
 
-//use for 7 byte
+//Взятие N byte от строки
 char* GetNByte(char* string, int from, int nByte)
 {
 	if (nByte > 0)
@@ -68,6 +70,7 @@ char* GetNByte(char* string, int from, int nByte)
 	}
 } 
 
+//Set строки нулевыми символами
 void SetNull(char* string, int length)
 {
 	for (int i = 0; i < length; i++)
@@ -79,7 +82,7 @@ void SetNull(char* string, int length)
 #define BLOCK_SIZE 7.0f
 #include "mio.h"
 
-
+//тестовая функция
 void func()
 {
 	int len;

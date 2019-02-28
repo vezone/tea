@@ -2,6 +2,7 @@
 
 //#define INT_TEST
 
+//Структура для работы с шифром
 typedef union DataUnion
 {
 	char     string[8];
